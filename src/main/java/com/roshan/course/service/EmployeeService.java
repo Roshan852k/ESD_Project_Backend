@@ -32,17 +32,10 @@ public class EmployeeService {
     private final JWTHelper jwtHelper;
 
     // Get Employee
-//    public Employee getEmployee(String email) {
-//        return employeeRepo.findByEmail(email)
-//                .orElseThrow(() -> new EmployeeNotFoundException(
-//                        format("Cannot found Employee:: No employee found with the provided ID:: %s", email)
-//                ));
-//    }
-
     public Employee getEmployee(String email) {
         return employeeRepo.findByEmail(email)
                 .orElseThrow(() -> new EmployeeNotFoundException(
-                        String.format("Employee not found: No employee exists with the email ID: %s", email)
+                        format("Cannot found Employee:: No employee found with the provided ID:: %s", email)
                 ));
     }
 

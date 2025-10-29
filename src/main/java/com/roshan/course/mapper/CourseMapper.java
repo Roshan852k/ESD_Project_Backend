@@ -15,8 +15,6 @@ public class CourseMapper {
                 .specialization(request.specialization())
                 .credit(request.credit())
                 .capacity(request.capacity())
-                .year(request.year())
-                .term(request.term())
                 .build();
     }
 }

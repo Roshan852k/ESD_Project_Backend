@@ -55,7 +55,7 @@ public record CourseRequest(
         @JsonProperty("pre_requisites")
         String pre_requisites,
 
-        @NotNull(message="location is required")
+        @NotNull(message="locationis required")
         @NotEmpty(message="location is required")
         @NotBlank(message = "location  is required")
         @JsonProperty("location")
@@ -71,19 +71,7 @@ public record CourseRequest(
         @NotEmpty(message="time is required")
         @NotBlank(message ="time is required")
         @JsonProperty("time")
-        String time,
-
-        @NotNull(message="year is required")
-        @NotEmpty(message="year is required")
-        @NotBlank(message ="year is required")
-        @JsonProperty("year")
-        Integer year,
-
-        @NotNull(message="Course term is required")
-        @NotEmpty(message="Course term is required")
-        @NotBlank(message ="Course term is required")
-        @JsonProperty("term")
-        String term
+        String time
 
 ) {
 }

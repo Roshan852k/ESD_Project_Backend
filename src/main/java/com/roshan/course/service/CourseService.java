@@ -4,13 +4,10 @@ import static java.lang.String.format;
 
 import com.roshan.course.dto.CourseRequest;
 import com.roshan.course.entity.*;
-import com.roshan.course.exception.CourseAlreadyExistsException;
 import com.roshan.course.mapper.*;
 import com.roshan.course.repo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +22,7 @@ public class CourseService {
     private final CourseSpecialisationMapper coursespecialisationmapper;
     private final CourseSpecialisationRepo coursespecialisationrepo;
 
+    // private final SpecialisationMapper specialisationmapper;
     private final SpecialisationRepo specialisationrepo;
 
 
@@ -36,48 +34,26 @@ public class CourseService {
 
     // Add Course
     public String addCourse(CourseRequest request) {
-        // Course
-//        if (courseRepo.existsByCourseCode(request.course_code())){
-//            return "Course with code " + request.course_code() + " already exists.";
-//        }
-
-        if (courseRepo.existsByCourseCode(request.course_code())) {
-            throw new CourseAlreadyExistsException("Course with code " + request.course_code() + " already exists.");
-        }
-
-
         Course course = courseMapper.toCourseEntity(request);
         courseRepo.save(course);
 
         Long courseId = course.getCourseId();
 
-        // Schedule
-        Schedule sc = schedulemapper.toCourseScheduleEntity(request, courseId);
-        schedulerepo.save(sc);
+        Schedule schedule = schedulemapper.toCourseScheduleEntity(request, courseId);
+        schedulerepo.save(schedule);
 
         // Get specilization_id
         Long specialisation_id = specialisationrepo.findIdByName(request.specialization());
 
-        // CourseSpecialisation
         CourseSpecialisation cs = coursespecialisationmapper.toCourseSpecialisationEntity(request, courseId, specialisation_id);
         coursespecialisationrepo.save(cs);
 
-        // Prerequisites
         Prerequisites pr = prerequisitesmapper.toCoursePrerequisitesEntity(request, courseId);
         prerequisitesrepo.save(pr);
 
-        // Faculty
         Faculty fc = facultymapper.toCoursePrerequisitesEntity(request, courseId);
         facultyrepo.save(fc);
 
         return "Course Added Successfully";
-    }
-
-    public List<String> getAllCourseNames() {
-        return courseRepo.findAllCourseNames();
-    }
-
-    public List<String> getAllSpecializations() {
-        return specialisationrepo.findAllSpecializations();
     }
 }

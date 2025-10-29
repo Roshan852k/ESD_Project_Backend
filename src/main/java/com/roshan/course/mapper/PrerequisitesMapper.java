@@ -11,7 +11,6 @@ public class PrerequisitesMapper {
         return Prerequisites.builder()
                 .course_id(courseId)
                 .pre_requisites(request.pre_requisites())
-                .description(request.pre_requisites() + " is a prerequisite for " + request.course_code())
                 .build();
     }
 }

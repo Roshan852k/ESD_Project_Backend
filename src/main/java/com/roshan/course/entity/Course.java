@@ -14,10 +14,10 @@ import lombok.NoArgsConstructor;
 @Table(name = "course")
 public class Course {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long course_id;
 
-    @Column(name = "course_code", nullable = false, unique = true)
+    @Column(name = "course_code", nullable = false)
     private String course_code;
 
     @Column(name = "name", nullable = false)
@@ -34,12 +34,6 @@ public class Course {
 
     @Column(name = "capacity", nullable = false)
     private Integer capacity;
-
-    @Column(name = "year", nullable = false)
-    private Integer year;
-
-    @Column(name = "term", nullable = false)
-    private String term;
 
 //    @Column(name = "faculty", nullable = false)
 //    private String faculty;

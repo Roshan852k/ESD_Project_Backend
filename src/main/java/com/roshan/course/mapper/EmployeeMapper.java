@@ -8,12 +8,8 @@ import org.springframework.stereotype.Service;
 public class EmployeeMapper {
     public Employee toEntity(EmployeeRequest request) {
         return Employee.builder()
-                .firstName(request.firstName())
-                .lastName(request.lastName())
                 .email(request.email())
                 .password(request.password())
-                .title(request.title())
-                .department(request.department())
                 .build();
     }
 }

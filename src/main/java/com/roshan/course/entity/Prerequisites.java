@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "pre_requisites")
 public class Prerequisites {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "course_id", nullable = false)
@@ -22,7 +22,4 @@ public class Prerequisites {
 
     @Column(name = "pre_requisites", nullable = false)
     private String pre_requisites;
-
-    @Column(name = "description", nullable = false)
-    private String description;
 }

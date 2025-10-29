@@ -15,7 +15,7 @@ import org.hibernate.grammars.hql.HqlParser;
 @Table(name = "schedule")
 public class Schedule {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long schedule_id;
 
     @Column(name = "course_id", nullable = false)
